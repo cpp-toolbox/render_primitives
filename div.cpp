@@ -1,0 +1,9 @@
+#include "div.hpp"
+#include "glad/gl.h"
+#include <cstdio>
+
+/**
+ * precondition: opengl must be configured first
+ */
+Div::Div(float vertices[], int num_vertices, unsigned int indices[], int num_indices) : DivBase(GL_TRIANGLES, vertices, num_vertices, indices, num_indices) {
+}
