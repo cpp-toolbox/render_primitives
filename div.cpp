@@ -5,5 +5,5 @@
 /**
  * precondition: opengl must be configured first
  */
-Div::Div(float vertices[], int num_vertices, unsigned int indices[], int num_indices) : DivBase(GL_TRIANGLES, vertices, num_vertices, indices, num_indices) {
+Div::Div(float vertices[], int num_vertices, unsigned int indices[], int num_indices, float r, float g, float b) : DivBase(GL_TRIANGLES, vertices, num_vertices, indices, num_indices, r, g, b) {
 }

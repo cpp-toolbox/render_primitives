@@ -35,8 +35,9 @@ void DTriBase::bind_vertex_attribute_interpretation_to_opengl_for_later_use() co
 /**
  * precondition: opengl must be configured first
  */
-DTriBase::DTriBase(unsigned int draw_mode, float flattened_vertices[], int num_flattened_vertices) {
-    shader_pipeline.load_in_shaders_from_file("../graphics/shaders/absolute_position.vert", "../graphics/shaders/absolute_position_with_color_uniform.frag");
+DTriBase::DTriBase(unsigned int draw_mode, float flattened_vertices[], int num_flattened_vertices, float r, float g, float b) {
+    this->shader_pipeline.load_in_shaders_from_file("../graphics/shaders/absolute_position.vert", "../graphics/shaders/absolute_position_with_color_uniform.frag");
+    this->set_color_in_shader(r, g, b);
     assert(num_flattened_vertices % 3 == 0);
     this->num_vertices = num_flattened_vertices / 3;
     this->draw_mode = draw_mode;
@@ -50,4 +51,14 @@ void DTriBase::update_vertices(float flattened_vertices[], int num_flattened_ver
     this->flattened_vertices = flattened_vertices;
     this->num_flattened_vertices = num_flattened_vertices;
     this->bind_index_vertex_data_to_opengl_for_later_use();
+}
+
+/**
+ * \pre the shader pipeline has loaded in shaders
+ */
+void DTriBase::set_color_in_shader(float r, float g, float b) const {
+    glUseProgram(this->shader_pipeline.shader_program_id);
+    int color_uniform_location = glGetUniformLocation(this->shader_pipeline.shader_program_id, "color");
+    glUniform4f(color_uniform_location, r, g, b, 1.0f);
+    glUseProgram(0);
 }

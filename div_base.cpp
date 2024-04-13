@@ -37,8 +37,9 @@ void DivBase::bind_vertex_attribute_interpretation_to_opengl_for_later_use() con
 /**
  * precondition: opengl must be configured first
  */
-DivBase::DivBase(unsigned int draw_mode, float vertices[], int num_vertices, unsigned int indices[], int num_indices) {
+DivBase::DivBase(unsigned int draw_mode, float vertices[], int num_vertices, unsigned int indices[], int num_indices, float r, float g, float b) {
     shader_pipeline.load_in_shaders_from_file("../graphics/shaders/absolute_position.vert", "../graphics/shaders/absolute_position_with_color_uniform.frag");
+    this->set_color_in_shader(r, g, b);
     this->draw_mode = draw_mode;
     this->generate_opengl_vertex_array_and_buffers();
     this->update_vertices_and_indices(vertices, num_vertices, indices, num_indices);
@@ -52,4 +53,13 @@ void DivBase::update_vertices_and_indices(float vertices[], int num_vertices, un
     this->indices = indices;
     this->num_indices = num_indices;
     this->bind_index_vertex_data_to_opengl_for_later_use();
+}
+/**
+ * \pre the shader pipeline has loaded in shaders
+ */
+void DivBase::set_color_in_shader(float r, float g, float b) const {
+    glUseProgram(this->shader_pipeline.shader_program_id);
+    int color_uniform_location = glGetUniformLocation(this->shader_pipeline.shader_program_id, "color");
+    glUniform4f(color_uniform_location, r, g, b, 1.0f);
+    glUseProgram(0);
 }
