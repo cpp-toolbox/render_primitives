@@ -1,6 +1,6 @@
 #include "height_map.hpp"
 
-#include "glad/gl.h"
+#include "glad/glad.h"
 #include <cstdio>
 #include <utility>
 
@@ -9,7 +9,8 @@ void HeightMap::draw() {
     glBindVertexArray(vertex_attribute_object);
 
     for (unsigned int strip = 0; strip < num_strips; strip++) {
-        glDrawElements(GL_TRIANGLE_STRIP, num_indices_per_strip, GL_UNSIGNED_INT, (void *)(sizeof(unsigned int) * num_indices_per_strip * strip));
+        glDrawElements(GL_TRIANGLE_STRIP, num_indices_per_strip, GL_UNSIGNED_INT,
+                       (void *) (sizeof(unsigned int) * num_indices_per_strip * strip));
     }
 
     glBindVertexArray(0); // unbinds current vertex_attribute_object
@@ -46,11 +47,10 @@ void HeightMap::bind_vertex_attribute_interpretation_to_opengl_for_later_use() c
 HeightMap::HeightMap(std::vector<float> data_points, int width, int height) {
 
     // get indices in row major order
-    for(unsigned y = 0; y < height-1; y += 1) // - 1 because we look ahead one row.
+    for (unsigned y = 0; y < height - 1; y += 1) // - 1 because we look ahead one row.
     {
-        for(unsigned x = 0; x < width; x += 1)
-        {
-            for(unsigned k = 0; k < 2; k++) // add at this x pos, and exactly in the next row below.
+        for (unsigned x = 0; x < width; x += 1) {
+            for (unsigned k = 0; k < 2; k++) // add at this x pos, and exactly in the next row below.
             {
                 indices.push_back(x + width * (y + k));
             }
@@ -63,7 +63,8 @@ HeightMap::HeightMap(std::vector<float> data_points, int width, int height) {
     // process and subsequently every new index produces a new triangle
 
     //    float vertices[], int num_vertices, unsigned int indices[], int num_indices
-    shader_pipeline.load_in_shaders_from_file("../graphics/shaders/CWL_v_transformation.vert", "../graphics/shaders/fixed_color.frag");
+    shader_pipeline.load_in_shaders_from_file("../graphics/shaders/CWL_v_transformation.vert",
+                                              "../graphics/shaders/fixed_color.frag");
     this->generate_opengl_vertex_array_and_buffers();
     this->bind_index_vertex_data_to_opengl_for_later_use();
     this->bind_vertex_attribute_interpretation_to_opengl_for_later_use();

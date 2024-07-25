@@ -1,5 +1,5 @@
 #include "div_base.hpp"
-#include "glad/gl.h"
+#include "glad/glad.h"
 #include <cstdio>
 
 void DivBase::draw() {
@@ -37,8 +37,10 @@ void DivBase::bind_vertex_attribute_interpretation_to_opengl_for_later_use() con
 /**
  * precondition: opengl must be configured first
  */
-DivBase::DivBase(unsigned int draw_mode, float vertices[], int num_vertices, unsigned int indices[], int num_indices, float r, float g, float b) {
-    shader_pipeline.load_in_shaders_from_file("../graphics/shaders/absolute_position.vert", "../graphics/shaders/absolute_position_with_color_uniform.frag");
+DivBase::DivBase(unsigned int draw_mode, float vertices[], int num_vertices, unsigned int indices[], int num_indices,
+                 float r, float g, float b) {
+    shader_pipeline.load_in_shaders_from_file("../graphics/shaders/absolute_position.vert",
+                                              "../graphics/shaders/absolute_position_with_color_uniform.frag");
     this->set_color_in_shader(r, g, b);
     this->draw_mode = draw_mode;
     this->generate_opengl_vertex_array_and_buffers();
@@ -54,6 +56,7 @@ void DivBase::update_vertices_and_indices(float vertices[], int num_vertices, un
     this->num_indices = num_indices;
     this->bind_index_vertex_data_to_opengl_for_later_use();
 }
+
 /**
  * \pre the shader pipeline has loaded in shaders
  */
