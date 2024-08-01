@@ -4,7 +4,7 @@
 #include "../shader_pipeline/shader_pipeline.hpp"
 
 /*
- * \brief draws triangles through a list of sequential vertices without a custom indexing
+ * \brief draws triangles through a list of sequential vertex_positions without a custom indexing
  *
  * \desc you can specify the draw mode which allows you do to things like triangle fan etc...
  */

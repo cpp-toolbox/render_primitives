@@ -1,10 +1,12 @@
 #include "div.hpp"
 #include "glad/glad.h"
 #include <cstdio>
+#include <utility>
 
 /**
- * precondition: opengl must be configured first
+ * \pre there is an active opengl context
  */
-Div::Div(float vertices[], int num_vertices, unsigned int indices[], int num_indices, float r, float g, float b)
-        : DivBase(GL_TRIANGLES, vertices, num_vertices, indices, num_indices, r, g, b) {
-}
+
+Div::Div(ShaderType shader_type, std::vector<glm::vec3> vertex_positions, std::vector<unsigned int> indices,
+         ShaderCache &shader_cache)
+    : DivBase(shader_type, GL_TRIANGLES, std::move(vertex_positions), std::move(indices), shader_cache) {}

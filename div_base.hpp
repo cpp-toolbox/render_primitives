@@ -1,7 +1,9 @@
 #ifndef DIV_HPP
 #define DIV_HPP
 
-#include "../shader_pipeline/shader_pipeline.hpp"
+#include <vector>
+#include <glm/glm.hpp>
+#include "sbpt_generated_includes.hpp"
 
 // Drawable Indexed Vertices
 /*
@@ -9,22 +11,20 @@
  */
 class DivBase {
   public:
-    int num_vertices, num_indices;
-    float *vertices;
-    unsigned int *indices;
-    DivBase(unsigned int draw_mode, float vertices[], int num_vertices, unsigned int indices[], int num_indices,
-            float r, float g, float b);
+    std::vector<glm::vec3> vertex_positions;
+    std::vector<unsigned int> indices;
+    DivBase(ShaderType shader_type, unsigned int draw_mode, std::vector<glm::vec3> vertex_positions,
+            std::vector<unsigned int> indices, ShaderCache &shader_cache);
     void draw();
-    void update_vertices_and_indices(float vertices[], int num_vertices, unsigned int indices[], int num_indices);
-    ShaderPipeline shader_pipeline;
+    void update_vertices_and_indices(std::vector<glm::vec3> vertex_positions, std::vector<unsigned int> indices);
+    unsigned int vertex_attribute_object, vertex_position_buffer_object, index_buffer_object, draw_mode;
+    ShaderType shader_type;
+    ShaderCache &shader_cache;
 
   private:
-    unsigned int vertex_attribute_object, vertex_buffer_object, index_buffer_object, draw_mode;
-    void bind_index_vertex_data_to_opengl_for_later_use() const;
-    void bind_vertex_attribute_interpretation_to_opengl_for_later_use() const;
+    void bind_vertex_attribute_interpretation_to_opengl_for_later_use();
+    void bind_index_vertex_data_to_opengl_for_later_use();
     void generate_opengl_vertex_array_and_buffers();
-
-    void set_color_in_shader(float r, float g, float b) const;
 };
 
 #endif // DIV_HPP
