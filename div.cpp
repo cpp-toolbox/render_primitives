@@ -1,5 +1,4 @@
 #include "div.hpp"
-#include "glad/glad.h"
 #include <cstdio>
 #include <utility>
 

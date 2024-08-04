@@ -9,7 +9,7 @@ void DivCollection::draw() {
 DiffuseTexturedDivCollection::DiffuseTexturedDivCollection(ShaderType shader_type, TexturedModel &textured_model,
                                                            ShaderCache &shader_cache,
                                                            OpenGLTextureCache &gl_texture_cache) {
-    for (const auto &textured_mesh : textured_model.meshes) {
+    for (const auto &textured_mesh : textured_model) {
         tdts.emplace_back(shader_type, textured_mesh, shader_cache, gl_texture_cache);
     }
 }

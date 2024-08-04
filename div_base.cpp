@@ -1,5 +1,4 @@
 #include "div_base.hpp"
-#include "glad/glad.h"
 #include <cstdio>
 #include <vector>
 
