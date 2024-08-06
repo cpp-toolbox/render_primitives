@@ -1,4 +1,4 @@
-#include "div_cubemap.hpp"
+#include "divplo_cubemap.hpp"
 #include "sbpt_generated_includes.hpp"
 
 std::vector<glm::vec3> cube_vertex_positions =
@@ -43,9 +43,9 @@ std::string remove_trailing_slash(const std::string &path) {
     return result;
 }
 
-CubeMap::CubeMap(const std::string &cube_map_dir, const std::string &file_extension, ShaderType shader_type,
-                 ShaderCache &shader_cache)
-    : Div(shader_type, cube_vertex_positions, cube_vertex_indices, shader_cache) {
+DivploCubeMap::DivploCubeMap(const std::string &cube_map_dir, const std::string &file_extension, ShaderType shader_type,
+                             ShaderCache &shader_cache)
+    : DivpLinearOrder(shader_type, cube_vertex_positions, cube_vertex_indices, shader_cache) {
 
     glGenTextures(1, &opengl_texture_id);
     glBindTexture(GL_TEXTURE_CUBE_MAP, opengl_texture_id);
@@ -75,8 +75,8 @@ CubeMap::CubeMap(const std::string &cube_map_dir, const std::string &file_extens
     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
 }
 
-void CubeMap::draw() {
+void DivploCubeMap::draw() {
     glBindTexture(GL_TEXTURE_CUBE_MAP, opengl_texture_id);
-    Div::draw();
+    DivpLinearOrder::draw();
     glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
 }

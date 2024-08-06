@@ -4,11 +4,13 @@
 #include <vector>
 #include <string>
 #include <glm/glm.hpp>
-#include "div.hpp"
+#include "divp_linear_order.hpp"
 
 #include "sbpt_generated_includes.hpp"
 
 /**
+ * \brief Drawable Indexed Vertex Positions (in) Linear Order (which is) Diffuse Textured
+ *
  * \details When you see an object in real life, this is because light hit that object and bounced into your eye.
  * The term "diffuse" describes how the light is spread out over the surface rather than being concentrated in one
  * direction, this scattering is responsible for the basic color of objects as perceived by the human eye under uniform
@@ -19,15 +21,15 @@
  *
  * \author cuppajoeman
  */
-class DiffuseTexturedDiv : Div {
+class DivploDiffuseTextured : DivpLinearOrder {
   public:
-    DiffuseTexturedDiv(ShaderType shader_type, std::vector<glm::vec3> vertex_positions,
-                       std::vector<unsigned int> indices, std::vector<glm::vec2> texture_coordinates,
-                       std::string diffuse_texture_path, ShaderCache &shader_cache,
-                       OpenGLTextureCache &gl_texture_cache);
+    DivploDiffuseTextured(ShaderType shader_type, std::vector<glm::vec3> vertex_positions,
+                          std::vector<unsigned int> indices, std::vector<glm::vec2> texture_coordinates,
+                          std::string diffuse_texture_path, ShaderCache &shader_cache,
+                          OpenGLTextureCache &gl_texture_cache);
 
-    DiffuseTexturedDiv(ShaderType shader_type, TexturedMesh textured_mesh, ShaderCache &shader_cache,
-                       OpenGLTextureCache &gl_texture_cache);
+    DivploDiffuseTextured(ShaderType shader_type, TexturedMesh textured_mesh, ShaderCache &shader_cache,
+                          OpenGLTextureCache &gl_texture_cache);
 
     unsigned int opengl_texture_id;
     std::vector<glm::vec2> texture_coordinates;
