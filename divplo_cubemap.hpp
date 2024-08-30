@@ -2,7 +2,6 @@
 #define DIV_CUBEMAP_HPP
 
 #include "divp_linear_order.hpp"
-#include <iostream>
 #include <string>
 
 /**
