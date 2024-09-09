@@ -21,7 +21,7 @@
  *
  * \author cuppajoeman
  */
-class DivploDiffuseTextured : DivpLinearOrder {
+class DivploDiffuseTextured : public DivpLinearOrder {
   public:
     DivploDiffuseTextured(ShaderType shader_type, std::vector<glm::vec3> vertex_positions,
                           std::vector<unsigned int> indices, std::vector<glm::vec2> texture_coordinates,
