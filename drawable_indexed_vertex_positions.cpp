@@ -37,7 +37,8 @@ void DrawableIndexedVertexPositions::bind_index_vertex_data_to_opengl_for_later_
 
 void DrawableIndexedVertexPositions::bind_vertex_attribute_interpretation_to_opengl_for_later_use() {
     shader_cache.configure_vertex_attributes_for_drawables_vao(vertex_attribute_object, vertex_position_buffer_object,
-                                                               shader_type, ShaderVertexAttributeVariable::POSITION);
+                                                               shader_type,
+                                                               ShaderVertexAttributeVariable::XYZ_POSITION);
 }
 
 /**

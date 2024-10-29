@@ -14,7 +14,8 @@ DrawableVertexPositions::DrawableVertexPositions(unsigned int draw_mode, std::ve
     glBindVertexArray(0);
 
     shader_cache.configure_vertex_attributes_for_drawables_vao(vertex_attribute_object, vertex_position_buffer_object,
-                                                               shader_type, ShaderVertexAttributeVariable::POSITION);
+                                                               shader_type,
+                                                               ShaderVertexAttributeVariable::XYZ_POSITION);
 }
 
 void DrawableVertexPositions::draw() {
