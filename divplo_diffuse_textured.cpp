@@ -56,7 +56,8 @@ void DivploDiffuseTextured::generate_and_bind_textures_to_opengl() {
  * \note the texture calls don't have to be within a vao context because apparently texture are just global in opengl
  */
 void DivploDiffuseTextured::draw() {
-    // Note by default
+    // Note by default in the shader the texture sampler is set to 0, 
+    // TODO expcitly set it to 0.
     //    glActiveTexture(GL_TEXTURE0);
     //    shader_cache.set_uniform(shader_type, ShaderUniformVariable::)
     glBindTexture(GL_TEXTURE_2D, opengl_texture_id);

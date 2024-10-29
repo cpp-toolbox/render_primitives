@@ -3,6 +3,7 @@
 
 #include "divp_linear_order.hpp"
 #include "divplo_diffuse_textured.hpp"
+#include "divplodt_normals.hpp"
 #include <vector>
 
 /**
@@ -25,6 +26,17 @@ class DivplodtCollection {
     //    DiffuseTexturedDivCollection(std::vector<DiffuseTexturedDivCollection> tdts, OpenGLTextureCache
     //    &gl_texture_cache);
     DivplodtCollection(ShaderType shader_type, TexturedModel &textured_model, ShaderCache &shader_cache,
+                                 OpenGLTextureCache &gl_texture_cache);
+};
+
+class DivplodtnCollection {
+    std::vector<DivplodtNormals> drawables;
+
+  public:
+    void draw();
+    //    DiffuseTexturedDivCollection(std::vector<DiffuseTexturedDivCollection> tdts, OpenGLTextureCache
+    //    &gl_texture_cache);
+    DivplodtnCollection(ShaderType shader_type, TexturedModel &textured_model, ShaderCache &shader_cache,
                                  OpenGLTextureCache &gl_texture_cache);
 };
 
